@@ -32,8 +32,9 @@ export default class extends React.Component {
       const {
         main: { temp, temp_max, temp_min, feels_like },
         weather,
+        name,
       } = data.data;
-      console.log(temp, weather);
+      console.log(temp, weather, name);
       // console.log(weather);
 
       this.setState({
@@ -43,6 +44,7 @@ export default class extends React.Component {
         temp_max,
         temp_min,
         feels_like,
+        name,
       });
       // console.log(this.state.condition);
       // console.log(temp);
@@ -109,11 +111,12 @@ export default class extends React.Component {
   }
 
   render() {
-    const { isLoading, temp, condition, temp_max, temp_min, feels_like } = this.state;
+    const { isLoading, temp, condition, temp_max, temp_min, feels_like, name } = this.state;
     return isLoading ? (
       <Loading />
     ) : (
       <Weather
+        name={name}
         temp={Math.round(temp)}
         condition={condition}
         tempMax={Math.round(temp_max)}
